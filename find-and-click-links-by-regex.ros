@@ -1,0 +1,17 @@
+#!/bin/sh
+#|-*- mode:lisp -*-|#
+#|
+exec ros -Q -- $0 "$@"
+|#
+(progn ;;init forms
+  (ros:ensure-asdf)
+  (ql:quickload :drakma :silent t))
+
+(defpackage :ros.script.hello-world.3738385649
+  (:use :cl :drakma))
+(in-package :ros.script.hello-world.3738385649)
+
+(defun main (&rest argv)
+  (declare (ignorable argv))
+  (print (drakma:http-request "https://jacobclark.xyz")))
+;;; vim: set ft=lisp lisp:

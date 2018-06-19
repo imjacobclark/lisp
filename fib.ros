@@ -1,0 +1,17 @@
+#!/bin/sh
+#|-*- mode:lisp -*-|#
+#|
+exec ros -Q -- $0 "$@"
+|#
+
+(defun calcuate-fib (x y z)
+  (cond
+    ((> x 0) (calcuate-fib (1- x) z (+ y z)))
+    (t z))
+)
+
+(defun fib (x) (calcuate-fib (- x 2) 1 1))
+
+(defun main ()
+  (print (concatenate 'string "Your fibonacci number is " (write-to-string (fib 10))))
+)

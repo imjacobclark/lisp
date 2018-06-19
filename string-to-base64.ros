@@ -1,0 +1,18 @@
+#!/bin/sh
+#|-*- mode:lisp -*-|#
+#|
+exec ros -Q -- $0 "$@"
+|#
+(progn ;;init forms
+  (ros:ensure-asdf)
+  (ql:quickload :cl-base64 :silent t))
+
+(defpackage :ros.script.hello-world.3738385649
+  (:use :cl :cl-base64))
+(in-package :ros.script.hello-world.3738385649)
+
+(defun main (&rest argv)
+  (declare (ignorable argv))
+  (print (string-to-base64-string (first argv))))
+;;; vim: set ft=lisp lisp:
+
