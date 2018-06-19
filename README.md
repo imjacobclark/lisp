@@ -1,2 +1,2 @@
 # lisp
-A collection of weird lisp goings on
+A collection of lisps
