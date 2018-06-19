@@ -7,9 +7,9 @@ exec ros -Q -- $0 "$@"
   (ros:ensure-asdf)
   (ql:quickload :cl-base64 :silent t))
 
-(defpackage :ros.script.hello-world.3738385649
+(defpackage :ros.script.string-to-base64.3738385649
   (:use :cl :cl-base64))
-(in-package :ros.script.hello-world.3738385649)
+(in-package :ros.script.string-to-base64.3738385649)
 
 (defun main (&rest argv)
   (declare (ignorable argv))

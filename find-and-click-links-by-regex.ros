@@ -7,9 +7,9 @@ exec ros -Q -- $0 "$@"
   (ros:ensure-asdf)
   (ql:quickload :drakma :silent t))
 
-(defpackage :ros.script.hello-world.3738385649
+(defpackage :ros.script.find-and-click-links-by-regex.3738385649
   (:use :cl :drakma))
-(in-package :ros.script.hello-world.3738385649)
+(in-package :ros.script.find-and-click-links-by-regex.3738385649)
 
 (defun main (&rest argv)
   (declare (ignorable argv))
