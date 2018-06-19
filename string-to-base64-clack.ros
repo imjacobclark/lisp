@@ -1,0 +1,32 @@
+#!/bin/sh
+#|-*- mode:lisp -*-|#
+#|
+exec ros -Q -- $0 "$@"
+|#
+(progn ;;init forms
+  (ros:ensure-asdf)
+  ;;#+quicklisp (ql:quickload '() :silent t)
+  (ql:quickload :clack :silent t)
+  (ql:quickload :cl-base64 :silent t)
+  )
+
+(defpackage :ros.script.clack-server.3738430582
+  (:use :cl :clack :cl-base64))
+(in-package :ros.script.clack-server.3738430582)
+
+(defun main (&rest argv)
+  (declare (ignorable argv))
+  (defun handler (env)
+    (destructuring-bind 
+      (&key path-info &allow-other-keys)
+      env
+      `(200 nil (,(string-to-base64-string (string-trim "/" path-info))))
+    )
+  )
+
+  (print "Starting server on port 3000")
+  (defparameter *clack-server*
+    (clack:clackup (lambda (env) (funcall 'handler env)) :silent T :port 3000))
+
+  (read)
+)
