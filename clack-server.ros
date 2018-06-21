@@ -8,28 +8,19 @@ exec ros -Q -- $0 "$@"
   ;;#+quicklisp (ql:quickload '() :silent t)
   (ql:quickload :clack :silent t)
   (ql:quickload :cl-base64 :silent t)
-  (ql:quickload :cl-json :silent t)
   )
 
 (defpackage :ros.script.clack-server.3738430582
-  (:use :cl :clack :cl-base64 :cl-json))
+  (:use :cl :clack :cl-base64))
 (in-package :ros.script.clack-server.3738430582)
 
 (defun main (&rest argv)
   (declare (ignorable argv))
-
-  (defun handle-request(path)
-     (json:encode-json-to-string (list 
-      (cons "base64" (string-to-base64-string path))
-      (cons "string" path)
-    ))
-  )
-
   (defun handler (env)
     (destructuring-bind 
       (&key path-info &allow-other-keys)
       env
-      `(200 (:content-type "application/json") (, (handle-request path-info)))
+      `(200 nil (,(string-to-base64-string (string-trim "/" path-info))))
     )
   )
 
